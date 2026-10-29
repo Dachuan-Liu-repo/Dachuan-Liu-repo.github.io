@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dachuan Liu</title>
+<meta name="description" content="Dachuan Liu: undergraduate researcher in multi-agent path finding and modular robotics at the University of Michigan and Shanghai Jiao Tong University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+  // Apply a saved theme before first paint to avoid a flash.
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+<style>
+  :root {
+    --paper: #FFFFFF;
+    --panel: #F2F5F8;
+    --ink: #17202A;
+    --muted: #5C6773;
+    --rule: #DDE3E9;
+    --accent: #1D5FA6;
+    --accent-soft: #E6EFF8;
+    --cell: #C9D0D9;
+    --shelf: #E6EAEF;
+    --shelf-edge: #CBD2DB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #151B21; --panel: #1E262E; --ink: #E4E9EE; --muted: #97A2AE; --rule: #2A333D;
+      --accent: #7EBFE6; --accent-soft: #1F2F3B; --cell: #3A444F; --shelf: #222B34; --shelf-edge: #36414D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #151B21; --panel: #1E262E; --ink: #E4E9EE; --muted: #97A2AE; --rule: #2A333D;
+    --accent: #7EBFE6; --accent-soft: #1F2F3B; --cell: #3A444F; --shelf: #222B34; --shelf-edge: #36414D;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 16.5px; line-height: 1.7;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  strong { font-weight: 600; }
+
+  /* Top bar */
+  .bar { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .bar-inner { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; height: 4.2rem; display: flex; align-items: center; gap: 1rem; }
+  .brand { font-weight: 600; font-size: 1.15rem; color: var(--ink); margin-right: auto; white-space: nowrap; }
+  .brand:hover { text-decoration: none; }
+  nav { display: flex; gap: 1.8rem; height: 100%; }
+  nav a { display: flex; align-items: center; color: var(--muted); border-bottom: 2px solid transparent; padding-top: 2px; white-space: nowrap; }
+  nav a:hover { color: var(--ink); text-decoration: none; }
+  nav a.on { color: var(--accent); border-bottom-color: var(--accent); }
+  .theme { background: none; border: 0; color: var(--ink); cursor: pointer; padding: 0.4rem; margin-left: 0.6rem; display: flex; }
+  .theme svg { width: 20px; height: 20px; }
+
+  /* Layout */
+  .wrap { max-width: 72rem; margin: 0 auto; padding: 3.5rem 1.5rem 3rem; display: grid; grid-template-columns: 17rem 1fr; gap: 4.5rem; }
+  aside { position: sticky; top: 6.5rem; align-self: start; text-align: center; }
+  .photo { width: 100%; aspect-ratio: 1 / 1; border-radius: 8px; overflow: hidden; background: var(--panel); display: grid; place-items: center; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .initials { font-size: 3.6rem; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; }
+  aside h2 { font-size: 1.85rem; font-weight: 600; margin: 1.6rem 0 0.5rem; line-height: 1.2; }
+  .role { color: var(--muted); margin: 0; }
+  .org { margin: 0.6rem 0 0; }
+  .place { color: var(--muted); font-size: 0.95rem; margin: 0; }
+  .mail { display: inline-block; margin-top: 1.4rem; }
+  .side-links { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1.3rem; }
+
+  main section + section { margin-top: 4.2rem; }
+  main h1, main h2.sec { font-size: 2rem; font-weight: 600; line-height: 1.2; margin: 0 0 1.4rem; letter-spacing: -0.01em; }
+  main h2.sec { font-size: 1.7rem; }
+  main p { margin: 0 0 1.1rem; }
+
+  .callout-unused { background: var(--accent-soft); border-left: 4px solid var(--accent); padding: 1rem 1.3rem; margin: 1.8rem 0 0; border-radius: 0 4px 4px 0; }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-top: 2.4rem; padding-top: 2.2rem; border-top: 1px solid var(--rule); }
+  .split h3 { font-size: 1.2rem; font-weight: 600; margin: 0 0 0.9rem; }
+  .split ul { margin: 0; padding-left: 1.1rem; }
+  .split li { margin-bottom: 0.35rem; }
+  .school { margin-bottom: 1.1rem; }
+  .school b { display: block; font-weight: 600; }
+  .school span { display: block; color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+  /* Demo */
+  figure { margin: 0 0 2.6rem; }
+  .demo { background: var(--panel); border-radius: 8px; padding: 1rem; }
+  .demo canvas { display: block; width: 100%; height: auto; aspect-ratio: 18 / 8; }
+  figcaption { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.7rem; }
+
+  /* Timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline > li { display: grid; grid-template-columns: 10.5rem 1fr; gap: 1.5rem; position: relative; padding-bottom: 2.2rem; }
+  .timeline > li:last-child { padding-bottom: 0; }
+  .when { color: var(--muted); font-size: 0.92rem; white-space: nowrap; padding-left: 1.6rem; position: relative; padding-top: 0.2rem; }
+  .when::before { content: ""; position: absolute; left: 0; top: 0.55rem; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--accent); background: var(--paper); z-index: 1; }
+  .timeline > li::before { content: ""; position: absolute; left: 5.5px; top: 1rem; bottom: 0; width: 2px; background: var(--rule); }
+  .timeline > li:last-child::before { display: none; }
+  .timeline h3 { font-size: 1.15rem; font-weight: 600; margin: 0; line-height: 1.4; }
+  .lab { color: var(--muted); margin: 0.15rem 0 0.6rem; font-size: 0.95rem; }
+  .timeline ul { margin: 0; padding-left: 1.1rem; }
+  .timeline ul li { margin-bottom: 0.35rem; }
+
+  /* Publications */
+  .pubs { list-style: none; margin: 0; padding: 0; }
+  .pubs li { padding: 1.1rem 0; border-top: 1px solid var(--rule); }
+  .pubs li:last-child { border-bottom: 1px solid var(--rule); }
+  .pt { font-weight: 600; display: block; line-height: 1.5; }
+  .pa { display: block; color: var(--ink); }
+  .pa .me { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .pv { display: block; color: var(--muted); font-size: 0.95rem; }
+  .status { display: inline-block; font-size: 0.8rem; font-weight: 500; color: var(--accent); background: var(--accent-soft); border-radius: 4px; padding: 0.05rem 0.5rem; margin-left: 0.4rem; vertical-align: 1px; }
+
+  /* Teaching */
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows li { display: grid; grid-template-columns: 1fr auto; gap: 0.2rem 1.5rem; padding: 0.75rem 0; border-top: 1px solid var(--rule); }
+  .rows li:last-child { border-bottom: 1px solid var(--rule); }
+  .rows .r { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+  .rows .s { grid-column: 1 / -1; color: var(--muted); font-size: 0.95rem; }
+
+  footer { max-width: 72rem; margin: 0 auto; padding: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 900px) {
+    .wrap { grid-template-columns: 1fr; gap: 3rem; padding-top: 2.5rem; }
+    aside { position: static; max-width: 22rem; margin: 0 auto; }
+    .photo { width: 11rem; margin: 0 auto; border-radius: 50%; }
+  }
+  @media (max-width: 640px) {
+    .demo { padding: 0.5rem; }
+    body { font-size: 16px; }
+    .bar-inner { padding: 0 1rem; gap: 0.6rem; }
+    .brand { display: none; }
+    nav { gap: 1.1rem; font-size: 0.95rem; overflow-x: auto; }
+    .theme { margin-left: auto; }
+    .wrap { padding: 2rem 1rem 2.5rem; }
+    .split { grid-template-columns: 1fr; gap: 1.8rem; }
+    .timeline > li { grid-template-columns: 1fr; gap: 0.3rem; padding-left: 0; }
+    .timeline > li > div:last-child { padding-left: 1.6rem; }
+    main h1 { font-size: 1.75rem; }
+    main h2.sec { font-size: 1.5rem; }
+    footer { padding: 1.2rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="bar-inner">
+    <a class="brand" href="#about">Dachuan Liu</a>
+    <nav aria-label="Sections">
+      <a href="#about" class="on">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+    </nav>
+    <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside>
+    <!-- To add a photo: upload a square image named photo.jpg to the repository. -->
+    <div class="photo"><img src="photo.jpg" alt="Dachuan Liu" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'initials',textContent:'DL'}))"></div>
+    <h2>Dachuan Liu</h2>
+    <p class="role">Undergraduate Researcher</p>
+    <p class="org">University of Michigan</p>
+    <p class="place">Ann Arbor, Michigan</p>
+    <a class="mail" href="mailto:dachuan@umich.edu">dachuan@umich.edu</a>
+    <ul class="side-links">
+      <li><a href="https://github.com/Dachuan-Liu-repo">GitHub</a></li>
+      <li><a href="CV.pdf">CV</a></li>
+      <!-- Add more when you have them, e.g.
+      <li><a href="https://scholar.google.com/citations?user=XXXX">Scholar</a></li>
+      <li><a href="https://www.linkedin.com/in/XXXX">LinkedIn</a></li> -->
+    </ul>
+  </aside>
+
+  <main>
+    <section id="about">
+      <h1>About me</h1>
+      <p>Senior in Computer Engineering at <strong>University of Michigan</strong>, dual degree in Mechanical Engineering at <strong>Shanghai Jiao Tong University</strong>.</p>
+      <p>I work on <strong>multi-agent path finding</strong> and <strong>modular robots</strong>.</p>
+
+      <div class="split">
+        <div>
+          <h3>Research interests</h3>
+          <ul>
+            <li>Multi-agent path finding</li>
+            <li>Multi-robot planning and coordination</li>
+            <li>Modular and swarm robotics</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Education</h3>
+          <div class="school"><b>University of Michigan</b><span>B.S.E. in Computer Engineering</span><span>Expected May 2027</span></div>
+          <div class="school"><b>Shanghai Jiao Tong University</b><span>B.S.E. in Mechanical Engineering</span><span>Expected Aug 2027</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <h2 class="sec">Research</h2>
+
+      <figure>
+        <div class="demo"><canvas id="mapf" role="img" aria-label="Animated grid where six colored agents with different speeds move between storage shelves to their goals without colliding."></canvas></div>
+        <figcaption>Agents with different speeds find collision-free paths. Dots on each agent = time steps per move.</figcaption>
+      </figure>
+
+      <ol class="timeline">
+        <li>
+          <div class="when">Apr 2026 – Present</div>
+          <div>
+            <h3>Shanghai Jiao Tong University</h3>
+            <p class="lab">Robotics, Autonomy, and Planning Lab. Advisor: <a href="https://sites.ji.sjtu.edu.cn/zren">Prof. Zhongqiang Ren</a></p>
+            <ul>
+              <li>LSRP*: anytime MAPF with asynchronous actions, scales to 1,000 agents.</li>
+              <li>LSRP*-LA: extends LSRP* to large agents, scales beyond 800 agents.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">Sep 2026 – Present</div>
+          <div>
+            <h3>University of Michigan</h3>
+            <p class="lab">Robotics Department. Advisor: Prof. Steven Ceron</p>
+            <ul>
+              <li>Building 20+ magnetic modular robots that reconfigure by rolling around each other.</li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <div class="when">Jan 2026 – Present</div>
+          <div>
+            <h3>University of Michigan</h3>
+            <p class="lab">Multidisciplinary Design Program. Advisor: Prof. Paul Green</p>
+            <ul>
+              <li>Driving-simulation study of visual demand around obstacles (Unreal Engine 5).</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="publications">
+      <h2 class="sec">Publications</h2>
+      <ul class="pubs">
+        <li>
+          <span class="pt">LSRP*: Scalable and Anytime Planning for Multi-Agent Path Finding with Asynchronous Actions<span class="status">Under review</span></span>
+          <span class="pa"><span class="me">Dachuan Liu</span>, Shuai Zhou, Shizhe Zhao, Zhongqiang Ren</span>
+          <span class="pv">IEEE International Conference on Robotics and Automation (ICRA), 2027</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="teaching">
+      <h2 class="sec">Teaching and service</h2>
+      <ul class="rows">
+        <li><span>Instructional Aide, EECS 216 Signals and Systems</span><span class="r">Fall 2026</span><span class="s">University of Michigan</span></li>
+        <li><span>Teaching Assistant, ECE 216 Signals and Systems</span><span class="r">Summer 2026</span><span class="s">Shanghai Jiao Tong University</span></li>
+        <li><span>Teaching Assistant, MATH 286 Differential Equations and Linear Algebra</span><span class="r">Fall 2025</span><span class="s">Shanghai Jiao Tong University</span></li>
+        <li><span>Sub-reviewer, IEEE Transactions on Intelligent Transportation Systems</span><span class="r">2026</span></li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<footer>Last updated October 2026</footer>
+
+<script>
+// Theme toggle and active section highlight.
+(function () {
+  const root = document.documentElement;
+  const sys = window.matchMedia("(prefers-color-scheme: dark)");
+  document.getElementById("theme").addEventListener("click", () => {
+    const current = root.getAttribute("data-theme") || (sys.matches ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    document.dispatchEvent(new Event("themechange"));
+  });
+
+  const links = [...document.querySelectorAll("nav a")];
+  const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+  const mark = () => {
+    let idx = 0;
+    sections.forEach((s, i) => { if (s.getBoundingClientRect().top < 140) idx = i; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) idx = sections.length - 1;
+    links.forEach((a, i) => a.classList.toggle("on", i === idx));
+  };
+  window.addEventListener("scroll", mark, { passive: true });
+  mark();
+})();
+</script>
+<script>
+(function () {
+  // Grid world: an 18 x 8 warehouse with six shelves.
+  const W = 18, H = 8, N = 6, HORIZON = 160, TICK_MS = 150, PAUSE_MS = 1100;
+  // Asynchronous actions: each agent needs a different number of ticks to cross one edge.
+  const DUR = [1, 2, 3, 1, 2, 3];
+  const COLORS_LIGHT = ["#2448B8", "#0F7F62", "#B4232F", "#7448BD", "#A86F00", "#0E6F8A"];
+  const COLORS_DARK  = ["#8FA8F5", "#4FC9A4", "#F07A84", "#B99AF0", "#E3B04B", "#5CC3DE"];
+  const SHELVES = [];
+  for (const y of [2, 5]) for (const [a, b] of [[2, 5], [8, 11], [14, 16]]) SHELVES.push([y, a, b]);
+
+  const blocked = new Set();
+  for (const [y, a, b] of SHELVES) for (let x = a; x <= b; x++) blocked.add(y * W + x);
+  const free = [];
+  for (let c = 0; c < W * H; c++) if (!blocked.has(c)) free.push(c);
+
+  const moves = c => {
+    const x = c % W, y = (c / W) | 0, out = [];
+    if (x > 0) out.push(c - 1);
+    if (x < W - 1) out.push(c + 1);
+    if (y > 0) out.push(c - W);
+    if (y < H - 1) out.push(c + W);
+    return out.filter(n => !blocked.has(n));
+  };
+  const dist = (a, b) => Math.abs(a % W - b % W) + Math.abs(((a / W) | 0) - ((b / W) | 0));
+
+  // occ holds "tick:cell" for every cell some agent occupies at that tick.
+  // While moving a -> b over [t, t + d], an agent occupies both a and b for the whole interval,
+  // so swaps and following conflicts are ruled out by vertex checks alone.
+  const freeDuring = (occ, cells, t0, t1) => {
+    for (let k = t0; k <= t1; k++) for (const c of cells) if (occ.has(k + ":" + c)) return false;
+    return true;
+  };
+
+  // Space-time A* where a move costs d ticks and a wait costs 1 tick.
+  function plan(start, goal, d, occ) {
+    const heap = [];
+    const push = n => { heap.push(n); let i = heap.length - 1; while (i > 0) { const p = (i - 1) >> 1; if (heap[p].f <= heap[i].f) break; [heap[p], heap[i]] = [heap[i], heap[p]]; i = p; } };
+    const pop = () => { const top = heap[0], last = heap.pop(); if (heap.length) { heap[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < heap.length && heap[l].f < heap[m].f) m = l; if (r < heap.length && heap[r].f < heap[m].f) m = r; if (m === i) break; [heap[m], heap[i]] = [heap[i], heap[m]]; i = m; } } return top; };
+    const seen = new Set();
+    push({ c: start, t: 0, f: dist(start, goal) * d, prev: null });
+    while (heap.length) {
+      const n = pop();
+      const key = n.t * W * H + n.c;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (n.c === goal && freeDuring(occ, [goal], n.t, HORIZON)) {
+        const path = [];
+        for (let m = n; m; m = m.prev) path.push({ c: m.c, t: m.t });
+        return path.reverse();
+      }
+      if (n.t + d > HORIZON) continue;
+      if (freeDuring(occ, [n.c], n.t, n.t + 1)) push({ c: n.c, t: n.t + 1, f: n.t + 1 + dist(n.c, goal) * d, prev: n });
+      for (const nb of moves(n.c)) {
+        const t = n.t + d;
+        if (seen.has(t * W * H + nb)) continue;
+        if (!freeDuring(occ, [n.c, nb], n.t, t)) continue;
+        push({ c: nb, t, f: t + dist(nb, goal) * d, prev: n });
+      }
+    }
+    return null;
+  }
+
+  function reserve(path, occ) {
+    for (let i = 0; i + 1 < path.length; i++) {
+      const a = path[i], b = path[i + 1];
+      for (let k = a.t; k <= b.t; k++) { occ.add(k + ":" + a.c); occ.add(k + ":" + b.c); }
+    }
+    const end = path[path.length - 1];
+    for (let k = end.t; k <= HORIZON; k++) occ.add(k + ":" + end.c);
+  }
+
+  // Prioritized planning: try a few priority orders before giving up on these goals.
+  function solve(starts, goals) {
+    const order = [...Array(N).keys()];
+    for (let attempt = 0; attempt < 25; attempt++) {
+      if (attempt) order.sort(() => Math.random() - 0.5);
+      const occ = new Set(), paths = [];
+      for (let i = 0; i < N; i++) occ.add("0:" + starts[i]);
+      let ok = true;
+      for (const i of order) {
+        const others = new Set(occ);
+        others.delete("0:" + starts[i]);
+        const p = plan(starts[i], goals[i], DUR[i], others);
+        if (!p) { ok = false; break; }
+        reserve(p, occ);
+        paths[i] = p;
+      }
+      if (ok) return paths;
+    }
+    return null;
+  }
+
+  const pick = (k, exclude) => {
+    const pool = free.filter(c => !exclude.has(c)), out = [];
+    while (out.length < k) out.push(pool.splice((Math.random() * pool.length) | 0, 1)[0]);
+    return out;
+  };
+
+  let positions = pick(N, new Set());
+  let goals, paths, endTick;
+  function newRound() {
+    for (let tries = 0; tries < 30; tries++) {
+      goals = pick(N, new Set(positions));
+      paths = solve(positions, goals);
+      if (paths) { endTick = Math.max(...paths.map(p => p[p.length - 1].t)); return; }
+    }
+    positions = pick(N, new Set());
+    newRound();
+  }
+  newRound();
+
+  // Where agent i is at continuous time tau (in ticks).
+  function locate(p, tau) {
+    let i = 0;
+    while (i + 1 < p.length && p[i + 1].t <= tau) i++;
+    if (i + 1 >= p.length) return { a: p[i].c, b: p[i].c, u: 0, next: i + 1 };
+    const a = p[i], b = p[i + 1];
+    return { a: a.c, b: b.c, u: (tau - a.t) / (b.t - a.t), next: i + 1 };
+  }
+
+  if (typeof document === "undefined") { module.exports = { solve, pick, newRound, get paths() { return paths; }, get goals() { return goals; }, DUR, HORIZON, N, W, H, blocked }; return; }
+
+  const canvas = document.getElementById("mapf");
+  const ctx = canvas.getContext("2d");
+  const dark = window.matchMedia("(prefers-color-scheme: dark)");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let palette = {};
+  function readPalette() {
+    const s = getComputedStyle(document.documentElement);
+    const theme = document.documentElement.getAttribute("data-theme");
+    const isDark = theme ? theme === "dark" : dark.matches;
+    palette = {
+      cell: s.getPropertyValue("--cell").trim(),
+      shelf: s.getPropertyValue("--shelf").trim(),
+      edge: s.getPropertyValue("--shelf-edge").trim(),
+      paper: s.getPropertyValue("--paper").trim(),
+      agents: isDark ? COLORS_DARK : COLORS_LIGHT
+    };
+  }
+  readPalette();
+  dark.addEventListener("change", readPalette);
+  document.addEventListener("themechange", readPalette);
+
+  let cs = 0;
+  function resize() {
+    const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(r.width * dpr);
+    canvas.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cs = r.width / W;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const center = c => [(c % W + 0.5) * cs, (((c / W) | 0) + 0.5) * cs];
+  const ease = u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+
+  function draw(tau) {
+    ctx.clearRect(0, 0, W * cs, H * cs);
+
+    ctx.fillStyle = palette.cell;
+    for (const c of free) { const [x, y] = center(c); ctx.beginPath(); ctx.arc(x, y, Math.max(1.2, cs * 0.05), 0, Math.PI * 2); ctx.fill(); }
+
+    ctx.fillStyle = palette.shelf; ctx.strokeStyle = palette.edge; ctx.lineWidth = 1;
+    for (const [y, a, b] of SHELVES) {
+      const pad = cs * 0.1;
+      ctx.beginPath();
+      ctx.roundRect(a * cs + pad, y * cs + pad, (b - a + 1) * cs - 2 * pad, cs - 2 * pad, cs * 0.12);
+      ctx.fill(); ctx.stroke();
+    }
+
+    const now = paths.map(p => {
+      const { a, b, u, next } = locate(p, tau);
+      const [ax, ay] = center(a), [bx, by] = center(b), e = ease(u);
+      return { next, px: ax + (bx - ax) * e, py: ay + (by - ay) * e };
+    });
+
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+    paths.forEach((p, i) => {
+      const col = palette.agents[i], { next, px, py } = now[i];
+      ctx.strokeStyle = col; ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1.5, cs * 0.07);
+      ctx.beginPath(); ctx.moveTo(px, py);
+      for (let k = next; k < p.length; k++) { const [x, y] = center(p[k].c); ctx.lineTo(x, y); }
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      const [gx, gy] = center(goals[i]), g = cs * 0.24;
+      ctx.lineWidth = Math.max(1.5, cs * 0.06);
+      ctx.strokeRect(gx - g, gy - g, 2 * g, 2 * g);
+    });
+
+    // Agents; the number of pips shows how many ticks one move takes (1 = fast, 3 = slow).
+    now.forEach(({ px, py }, i) => {
+      const r = cs * 0.3;
+      ctx.fillStyle = palette.agents[i];
+      ctx.beginPath(); ctx.arc(px, py, r, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = palette.paper;
+      const d = DUR[i], pr = Math.max(1, r * 0.17), gap = pr * 2.6;
+      for (let k = 0; k < d; k++) {
+        ctx.beginPath(); ctx.arc(px + (k - (d - 1) / 2) * gap, py, pr, 0, Math.PI * 2); ctx.fill();
+      }
+    });
+  }
+
+  if (still.matches) { draw(0); return; }
+
+  let t0 = performance.now();
+  function frame(now) {
+    const tau = (now - t0) / TICK_MS;
+    if (tau < endTick) {
+      draw(tau);
+    } else {
+      draw(endTick);
+      if ((now - t0) > endTick * TICK_MS + PAUSE_MS) { positions = goals.slice(); newRound(); t0 = now; }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
