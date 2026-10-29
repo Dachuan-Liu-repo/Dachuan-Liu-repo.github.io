@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dachuan Liu</title>
+<meta name="description" content="Dachuan Liu: undergraduate researcher in multi-agent path finding and modular robotics at the University of Michigan and Shanghai Jiao Tong University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FAFBFC;
+    --ink: #18202B;
+    --muted: #5A6472;
+    --rule: #DCE1E7;
+    --link: #2448B8;
+    --cell: #C9D0D9;
+    --shelf: #E6EAEF;
+    --shelf-edge: #CBD2DB;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12161C;
+      --ink: #E6EAF0;
+      --muted: #9AA4B2;
+      --rule: #2A313B;
+      --link: #8FA8F5;
+      --cell: #3A424E;
+      --shelf: #1E242D;
+      --shelf-edge: #353D49;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12161C; --ink: #E6EAF0; --muted: #9AA4B2; --rule: #2A313B;
+    --link: #8FA8F5; --cell: #3A424E; --shelf: #1E242D; --shelf-edge: #353D49;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Spectral", Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.65;
+  }
+  main { max-width: 44rem; margin: 0 auto; padding: 4.5rem 1rem 3rem; }
+
+  a { color: var(--link); text-decoration: none; border-bottom: 1px solid color-mix(in srgb, var(--link) 35%, transparent); }
+  a:hover { border-bottom-color: var(--link); }
+  a:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+
+  h1 { font-size: 2.6rem; line-height: 1.1; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 0.6rem; }
+  .affil { color: var(--muted); font-size: 1.05rem; margin: 0 0 1.6rem; }
+  .bio p { margin: 0 0 1rem; }
+
+  .links { list-style: none; padding: 0; margin: 1.4rem 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; }
+
+  figure { margin: 2.6rem 0 0; }
+  .demo { position: relative; width: 100%; aspect-ratio: 18 / 8; }
+  .demo canvas { display: block; width: 100%; height: 100%; }
+  figcaption { color: var(--muted); font-size: 0.92rem; line-height: 1.55; margin-top: 0.7rem; max-width: 38rem; }
+
+  section { margin-top: 3.4rem; }
+  h2 { font-size: 1.35rem; font-weight: 600; margin: 0 0 1.2rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--rule); }
+
+  .entry { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0 1.2rem; margin-bottom: 1.6rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .when { color: var(--muted); font-size: 0.92rem; padding-top: 0.15rem; }
+  .entry h3 { font-size: 1.05rem; font-weight: 600; margin: 0; line-height: 1.4; }
+  .where { color: var(--muted); font-size: 0.95rem; margin: 0.1rem 0 0.4rem; }
+  .entry p { margin: 0; }
+
+  .pub { margin: 0 0 1.2rem; }
+  .pub:last-child { margin-bottom: 0; }
+  .pub .title { font-weight: 500; }
+  .pub .authors, .pub .venue { display: block; }
+  .pub .venue { color: var(--muted); font-style: italic; }
+  .me { font-weight: 600; }
+
+  .plain { list-style: none; padding: 0; margin: 0; }
+  .plain li { margin-bottom: 0.5rem; }
+  .plain .sub { color: var(--muted); }
+
+  footer { margin-top: 4rem; padding-top: 1rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    main { padding-top: 2.8rem; }
+    h1 { font-size: 2.1rem; }
+    .entry { grid-template-columns: 1fr; }
+    .when { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Dachuan Liu</h1>
+    <p class="affil">Computer Engineering, University of Michigan<br>Mechanical Engineering, Shanghai Jiao Tong University (dual degree)</p>
+
+    <div class="bio">
+      <p>I work on multi-agent path finding: computing collision-free paths for large teams of robots that share the same space. With <a href="https://sites.ji.sjtu.edu.cn/zren">Prof. Zhongqiang Ren</a> at Shanghai Jiao Tong University, I develop anytime planners for agents whose actions take different amounts of time. At Michigan, I work with Prof. Steven Ceron on self-reconfigurable modular robots that move by rolling around one another.</p>
+      <p>I am applying to PhD programs in robotics for Fall 2027.</p>
+    </div>
+
+    <ul class="links">
+      <li><a href="mailto:dachuan@umich.edu">dachuan@umich.edu</a></li>
+      <li><a href="Dachuan_Liu_CV.pdf">CV (PDF)</a></li>
+      <!-- Replace YOUR-USERNAME with your GitHub username -->
+      <li><a href="https://github.com/YOUR-USERNAME">GitHub</a></li>
+    </ul>
+  </header>
+
+  <figure>
+    <div class="demo"><canvas id="mapf" role="img" aria-label="Animated grid where six colored agents move between storage shelves to their goals without colliding."></canvas></div>
+    <figcaption>Six agents find collision-free paths through a small warehouse, then get new goals. This demo uses simple prioritized space-time A*; my research is on planners that scale much further and handle agents with asynchronous actions.</figcaption>
+  </figure>
+
+  <section aria-labelledby="research">
+    <h2 id="research">Research</h2>
+
+    <div class="entry">
+      <div class="when">2026 – now</div>
+      <div>
+        <h3>Anytime planning for multi-agent path finding with asynchronous actions</h3>
+        <p class="where">Robotics, Autonomy, and Planning Lab, Shanghai Jiao Tong University. Advisor: Prof. Zhongqiang Ren</p>
+        <p>I developed LSRP*, a C++ solver that returns a feasible plan quickly and keeps improving it within a time budget, using dominance pruning and restart strategies. I am now extending it to large agents that occupy several cells at once.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2026 – now</div>
+      <div>
+        <h3>Self-reconfigurable modular robots</h3>
+        <p class="where">Robotics Department, University of Michigan. Advisor: Prof. Steven Ceron</p>
+        <p>Each module is a steel cylinder with an internal magnet that extends, retracts, and travels around its perimeter, letting modules attach, detach, and roll around each other. I am finalizing the design and building a fleet of 20 to 25 modules, including a redesigned power system and fatigue testing of the magnet mechanism.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2026 – now</div>
+      <div>
+        <h3>Visual demand of driving around obstacles</h3>
+        <p class="where">Multidisciplinary Design Program, University of Michigan. Advisor: Prof. Paul Green</p>
+        <p>I design Unreal Engine 5 driving experiments that vary obstacle type and curve radius, and measure drivers' visual demand with the visual occlusion method.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="pubs">
+    <h2 id="pubs">Publications</h2>
+
+    <p class="pub">
+      <span class="title">LSRP*: Scalable and Anytime Planning for Multi-Agent Path Finding with Asynchronous Actions</span>
+      <span class="authors"><span class="me">Dachuan Liu</span>, Shizhe Zhao, Zhongqiang Ren</span>
+      <span class="venue">Under review, IEEE International Conference on Robotics and Automation (ICRA) 2027</span>
+    </p>
+
+    <p class="pub">
+      <span class="title">LSRP*-LA: Anytime planning for multi-agent path finding with large agents</span>
+      <span class="authors"><span class="me">Dachuan Liu</span>, Shizhe Zhao, Zhongqiang Ren</span>
+      <span class="venue">In preparation</span>
+    </p>
+
+    <p class="pub">
+      <span class="title">Visual Demand of Driving Around Obstacles as Determined by Visual Occlusion</span>
+      <span class="authors"><span class="me">Dachuan Liu</span>, Paul Green, et al.</span>
+      <span class="venue">In preparation</span>
+    </p>
+  </section>
+
+  <section aria-labelledby="teaching">
+    <h2 id="teaching">Teaching and service</h2>
+    <ul class="plain">
+      <li>Instructional aide, EECS 216 Signals and Systems <span class="sub">University of Michigan, Fall 2026</span></li>
+      <li>Teaching assistant, ECE 216 Signals and Systems <span class="sub">Shanghai Jiao Tong University, Summer 2026</span></li>
+      <li>Teaching assistant, MATH 286 Differential Equations and Linear Algebra <span class="sub">Shanghai Jiao Tong University, Fall 2025</span></li>
+      <li>Sub-reviewer, IEEE Transactions on Intelligent Transportation Systems <span class="sub">2026</span></li>
+    </ul>
+  </section>
+
+  <footer>Last updated October 2026</footer>
+</main>
+
+<script>
+(function () {
+  const W = 18, H = 8, N = 6, HORIZON = 70, STEP_MS = 420, PAUSE_MS = 1100;
+  const COLORS_LIGHT = ["#2448B8", "#0F7F62", "#B4232F", "#7448BD", "#A86F00", "#0E6F8A"];
+  const COLORS_DARK  = ["#8FA8F5", "#4FC9A4", "#F07A84", "#B99AF0", "#E3B04B", "#5CC3DE"];
+
+  const blocked = new Set();
+  for (const y of [2, 5])
+    for (const [a, b] of [[2, 5], [8, 11], [14, 16]])
+      for (let x = a; x <= b; x++) blocked.add(y * W + x);
+  const free = [];
+  for (let c = 0; c < W * H; c++) if (!blocked.has(c)) free.push(c);
+
+  const nbrs = c => {
+    const x = c % W, y = (c / W) | 0, out = [c];
+    if (x > 0) out.push(c - 1);
+    if (x < W - 1) out.push(c + 1);
+    if (y > 0) out.push(c - W);
+    if (y < H - 1) out.push(c + W);
+    return out.filter(n => !blocked.has(n));
+  };
+  const h = (a, b) => Math.abs(a % W - b % W) + Math.abs(((a / W) | 0) - ((b / W) | 0));
+
+  // Space-time A* against vertex and edge reservations.
+  function plan(start, goal, vres, eres) {
+    const heap = [];
+    const push = n => { heap.push(n); let i = heap.length - 1; while (i > 0) { const p = (i - 1) >> 1; if (heap[p].f <= heap[i].f) break; [heap[p], heap[i]] = [heap[i], heap[p]]; i = p; } };
+    const pop = () => { const top = heap[0], last = heap.pop(); if (heap.length) { heap[0] = last; let i = 0; for (;;) { const l = 2 * i + 1, r = l + 1; let m = i; if (l < heap.length && heap[l].f < heap[m].f) m = l; if (r < heap.length && heap[r].f < heap[m].f) m = r; if (m === i) break; [heap[m], heap[i]] = [heap[i], heap[m]]; i = m; } } return top; };
+    const seen = new Set();
+    push({ c: start, t: 0, f: h(start, goal), prev: null });
+    while (heap.length) {
+      const n = pop();
+      const key = n.t * W * H + n.c;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (n.c === goal) {
+        let safe = true;
+        for (let k = n.t + 1; k <= HORIZON; k++) if (vres.has(k + ":" + goal)) { safe = false; break; }
+        if (safe) { const path = []; for (let m = n; m; m = m.prev) path.push(m.c); return path.reverse(); }
+      }
+      if (n.t >= HORIZON - 1) continue;
+      for (const nb of nbrs(n.c)) {
+        const t = n.t + 1;
+        if (vres.has(t + ":" + nb) || eres.has(n.t + ":" + n.c + ">" + nb)) continue;
+        if (seen.has(t * W * H + nb)) continue;
+        push({ c: nb, t, f: t + h(nb, goal), prev: n });
+      }
+    }
+    return null;
+  }
+
+  function solve(starts, goals) {
+    const order = [...Array(N).keys()];
+    for (let attempt = 0; attempt < 25; attempt++) {
+      if (attempt) order.sort(() => Math.random() - 0.5);
+      const vres = new Set(), eres = new Set(), paths = [];
+      let ok = true;
+      for (const i of order) {
+        const p = plan(starts[i], goals[i], vres, eres);
+        if (!p) { ok = false; break; }
+        p.forEach((c, t) => vres.add(t + ":" + c));
+        for (let t = p.length; t <= HORIZON; t++) vres.add(t + ":" + p[p.length - 1]);
+        for (let t = 0; t + 1 < p.length; t++) eres.add(t + ":" + p[t + 1] + ">" + p[t]);
+        paths[i] = p;
+      }
+      if (ok) {
+        const len = Math.max(...paths.map(p => p.length));
+        return paths.map(p => p.concat(Array(len - p.length).fill(p[p.length - 1])));
+      }
+    }
+    return null;
+  }
+
+  const pick = (k, exclude) => {
+    const pool = free.filter(c => !exclude.has(c)), out = [];
+    while (out.length < k) out.push(pool.splice((Math.random() * pool.length) | 0, 1)[0]);
+    return out;
+  };
+
+  let positions = pick(N, new Set());
+  let goals, paths;
+  function newRound() {
+    for (let tries = 0; tries < 30; tries++) {
+      goals = pick(N, new Set(positions));
+      paths = solve(positions, goals);
+      if (paths) return;
+    }
+    positions = pick(N, new Set());
+    newRound();
+  }
+  newRound();
+
+  const canvas = document.getElementById("mapf");
+  const ctx = canvas.getContext("2d");
+  const dark = window.matchMedia("(prefers-color-scheme: dark)");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let palette = {};
+  function readPalette() {
+    const s = getComputedStyle(document.documentElement);
+    const theme = document.documentElement.getAttribute("data-theme");
+    const isDark = theme ? theme === "dark" : dark.matches;
+    palette = {
+      cell: s.getPropertyValue("--cell").trim(),
+      shelf: s.getPropertyValue("--shelf").trim(),
+      edge: s.getPropertyValue("--shelf-edge").trim(),
+      agents: isDark ? COLORS_DARK : COLORS_LIGHT
+    };
+  }
+  readPalette();
+  dark.addEventListener("change", readPalette);
+
+  let cs = 0;
+  function resize() {
+    const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(r.width * dpr);
+    canvas.height = Math.round(r.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cs = r.width / W;
+  }
+  resize();
+  window.addEventListener("resize", resize);
+
+  const center = c => [(c % W + 0.5) * cs, (((c / W) | 0) + 0.5) * cs];
+  const ease = u => u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2;
+
+  function draw(step, frac) {
+    const w = W * cs, hh = H * cs;
+    ctx.clearRect(0, 0, w, hh);
+
+    ctx.fillStyle = palette.cell;
+    for (const c of free) { const [x, y] = center(c); ctx.beginPath(); ctx.arc(x, y, Math.max(1.2, cs * 0.05), 0, Math.PI * 2); ctx.fill(); }
+
+    ctx.fillStyle = palette.shelf; ctx.strokeStyle = palette.edge; ctx.lineWidth = 1;
+    for (const y of [2, 5])
+      for (const [a, b] of [[2, 5], [8, 11], [14, 16]]) {
+        const pad = cs * 0.1;
+        ctx.beginPath();
+        ctx.roundRect(a * cs + pad, y * cs + pad, (b - a + 1) * cs - 2 * pad, cs - 2 * pad, cs * 0.12);
+        ctx.fill(); ctx.stroke();
+      }
+
+    const now = paths.map(p => {
+      const s = Math.min(step, p.length - 1), nxt = Math.min(s + 1, p.length - 1);
+      const [ax, ay] = center(p[s]), [bx, by] = center(p[nxt]);
+      const e = ease(frac);
+      return { nxt, px: ax + (bx - ax) * e, py: ay + (by - ay) * e };
+    });
+
+    paths.forEach((p, i) => {
+      const col = palette.agents[i];
+      const { nxt, px, py } = now[i];
+
+      ctx.strokeStyle = col; ctx.globalAlpha = 0.35; ctx.lineWidth = Math.max(1.5, cs * 0.07);
+      ctx.lineJoin = "round"; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(px, py);
+      for (let t = nxt; t < p.length; t++) { const [x, y] = center(p[t]); ctx.lineTo(x, y); }
+      ctx.stroke();
+
+      ctx.globalAlpha = 1;
+      const [gx, gy] = center(goals[i]), g = cs * 0.24;
+      ctx.lineWidth = Math.max(1.5, cs * 0.06);
+      ctx.strokeRect(gx - g, gy - g, 2 * g, 2 * g);
+    });
+
+    now.forEach(({ px, py }, i) => {
+      ctx.fillStyle = palette.agents[i];
+      ctx.beginPath(); ctx.arc(px, py, cs * 0.3, 0, Math.PI * 2); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  if (still.matches) { draw(0, 0); return; }
+
+  let t0 = performance.now();
+  function frame(now) {
+    const len = paths[0].length, runMs = (len - 1) * STEP_MS, el = now - t0;
+    if (el < runMs) {
+      draw(Math.floor(el / STEP_MS), (el % STEP_MS) / STEP_MS);
+    } else {
+      draw(len - 1, 0);
+      if (el > runMs + PAUSE_MS) { positions = goals.slice(); newRound(); t0 = now; }
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
